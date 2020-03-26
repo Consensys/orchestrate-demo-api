@@ -1,8 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from 'src/app.module';
+import { environment } from 'src/config/environments/environment';
+import { SwaggerConfigService } from 'src/config/services/swagger-config.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  app.setGlobalPrefix(environment.basePath);
+  SwaggerConfigService.setup(app);
+  await app.listen(environment.port, '0.0.0.0');
 }
 bootstrap();
