@@ -6,6 +6,7 @@ import { SwaggerConfigService } from 'src/config/services/swagger-config.service
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix(environment.basePath);
+  app.enableCors();
   SwaggerConfigService.setup(app);
   await app.listen(environment.port, '0.0.0.0');
 }
