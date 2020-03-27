@@ -1,9 +1,9 @@
 import { exec } from 'child_process';
 
 export class CommandHelper {
-    static async run(cmd): Promise<any> {
+    static async run(command: string): Promise<any> {
         return new Promise(function (resolve, reject) {
-            exec(cmd, (err, stdout, stderr) => {
+            exec(command, (err, stdout, stderr) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -22,5 +22,20 @@ export class CommandHelper {
                 }
             });
         });
+    }
+
+    static wrap(command: string, exec: any): any {
+        let response: string;
+        try {
+            const { stdout, stderr } = exec;
+            response = !stdout ? stderr : stdout;
+        } catch (e) {
+            console.log(e);
+            response = e.message;
+        }
+        return {
+            command,
+            response
+        };
     }
 }
