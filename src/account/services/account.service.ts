@@ -20,12 +20,15 @@ export class AccountService {
         }
     }
 
-    async generateAccount(chain: string): Promise<any> {
-        if (isNullOrUndefined(chain) || chain.trim().length === 0) {
-            throw new ArgumentError(`Invalid chain`);
+    async generateAccount(chain?: string): Promise<any> {
+        let command = `orchestrate accounts generate --endpoint ${environment.orchestrate.endpoint}`;
+        if (chain) {
+            if (chain.trim().length === 0) {
+                throw new ArgumentError(`Invalid chain`);
+            } else {
+                command = `${command} --chain ${chain}`
+            }
         }
-        const endpoint = environment.orchestrate.endpoint;
-        const command = `orchestrate accounts generate --endpoint ${endpoint} --chain ${chain}`;
         try {
             const exec: any = await CommandHelper.run(command);
             const response = exec.stdout;
