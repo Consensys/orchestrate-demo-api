@@ -15,8 +15,8 @@ export class ContractsController {
     @Get()
     @ApiResponse(httpStatus.ok)
     @ApiResponse(httpStatus.internalServerError)
-    async getContractss(): Promise<any> {
-        const wrapper = await this.contractsService.listContractss();
+    async getContracts(): Promise<any> {
+        const wrapper = await this.contractsService.listContracts();
         return {
             commands: [wrapper],
             response: wrapper.response
