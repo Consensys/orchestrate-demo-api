@@ -1,20 +1,14 @@
 import { exec } from 'child_process';
 
 export class CommandHelper {
-    static async run(command: string): Promise<any> {
+    static async run(cmd: string): Promise<any> {
         return new Promise(function (resolve, reject) {
-            exec(command, (err, stdout, stderr) => {
+            exec(cmd, (err, stdout, stderr) => {
                 if (err) {
                     reject(err);
                 } else {
-                    let _stdout = stdout;
-                    if (_stdout) {
-                        _stdout = _stdout.trim();
-                    }
-                    let _stderr = stderr;
-                    if (_stderr) {
-                        _stderr = _stderr.trim();
-                    }
+                    const _stdout = stdout ? stdout.trim() : stdout;
+                    const _stderr = stderr ? stderr.trim() : stderr;
                     resolve({
                         stdout: _stdout,
                         stderr: _stderr
@@ -24,18 +18,13 @@ export class CommandHelper {
         });
     }
 
-    static wrap(command: string, exec: any): any {
-        let response: string;
-        try {
-            const { stdout, stderr } = exec;
-            response = !stdout ? stderr : stdout;
-        } catch (e) {
-            console.log(e);
-            response = e.message;
-        }
+    static wrap(cmd: string, exec: any, response: any): any {
+        const { stdout, stderr } = exec;
+        const rawResponse = stdout ? stdout : stderr;
         return {
-            command,
-            response
+            command: cmd,
+            response,
+            rawResponse
         };
     }
 }
