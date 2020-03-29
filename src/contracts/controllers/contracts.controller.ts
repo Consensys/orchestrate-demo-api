@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UseInterceptors } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { route } from 'src/app.routing';
 import { ContractsService } from '../services/contracts.service';
@@ -17,6 +17,17 @@ export class ContractsController {
     @ApiResponse(httpStatus.internalServerError)
     async getContracts(): Promise<any> {
         const wrapper = await this.contractsService.listContracts();
+        return {
+            commands: [wrapper],
+            response: wrapper.response
+        };
+    }
+
+    @Get(':name')
+    @ApiResponse(httpStatus.ok)
+    @ApiResponse(httpStatus.internalServerError)
+    async getContract(@Param() params): Promise<any> {
+        const wrapper = await this.contractsService.getContract(params.name);
         return {
             commands: [wrapper],
             response: wrapper.response
