@@ -4,4 +4,5 @@ export const route = {
     contracts: 'contracts',
     faucets: 'faucets',
     networks: 'networks',
+    transactions: 'transactions'
 };

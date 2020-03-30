@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CommandHelper } from 'src/shared/helpers/command.helper';
 import { environment } from 'src/config/environments/environment';
 import { TechnicalError } from 'src/shared/errors/technical.error';
-import { isNullOrUndefined } from 'util';
 import { ArgumentError } from 'src/shared/errors/argument.error';
 
 @Injectable()
@@ -21,7 +20,7 @@ export class AccountService {
     }
 
     async generateAccount(chain?: string): Promise<any> {
-        let command = `orchestrate accounts generate --endpoint ${environment.orchestrate.endpoint}`;
+        let command = `orchestrate accounts generate --endpoint ${environment.orchestrate.kafka.endpoint}`;
         if (chain) {
             if (chain.trim().length === 0) {
                 throw new ArgumentError(`Invalid chain`);

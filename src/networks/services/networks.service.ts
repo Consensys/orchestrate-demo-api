@@ -22,7 +22,7 @@ export class NetworksService {
   }
 
   // async getNetwork(name): Promise<any> {
-  //   const command = `orchestrate networks network -e localhost:8020 -n ${name}`;
+  //   const command = `orchestrate networks network -e ${environment.orchestrate.contractRegistry.endpoint} -n ${name}`;
   //   try {
   //     const exec: any = await CommandHelper.run(command);
   //     let response = exec.stdout;

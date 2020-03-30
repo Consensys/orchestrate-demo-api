@@ -8,7 +8,7 @@ import { ArgumentError } from 'src/shared/errors/argument.error';
 export class ContractsService {
 
   async listContracts(): Promise<any> {
-    const command = `orchestrate contracts catalog --endpoint localhost:8020`;
+    const command = `orchestrate contracts catalog --endpoint ${environment.orchestrate.contractRegistry.endpoint}`;
     try {
       const exec: any = await CommandHelper.run(command);
       let response = exec.stdout;
@@ -22,7 +22,7 @@ export class ContractsService {
   }
 
   async getContract(name): Promise<any> {
-    const command = `orchestrate contracts contract -e localhost:8020 -n ${name}`;
+    const command = `orchestrate contracts contract -e ${environment.orchestrate.contractRegistry.endpoint} -n ${name}`;
     try {
       const exec: any = await CommandHelper.run(command);
       let response = exec.stdout;
@@ -40,10 +40,10 @@ export class ContractsService {
   }
 
   async generateContracts(chain?: string): Promise<any> {
-    let command = `orchestrate contracts generate --endpoint ${environment.orchestrate.endpoint}`;
+    let command = `orchestrate contracts generate --endpoint ${environment.orchestrate.kafka.endpoint}`;
     if (chain) {
       if (chain.trim().length === 0) {
-        throw new ArgumentError(`Invalid chain`);
+        throw new ArgumentError(`Invalid chain name`);
       } else {
         command = `${command} --chain ${chain}`
       }

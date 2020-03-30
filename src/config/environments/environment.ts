@@ -3,6 +3,11 @@ export const environment = {
     basePath: 'api',
     port: 3000,
     orchestrate: {
-        endpoint: 'localhost:9092'
+        kafka: {
+            endpoint: 'localhost:9092'
+        },
+        contractRegistry: {
+            endpoint: 'localhost:8020'
+        }
     }
 };
