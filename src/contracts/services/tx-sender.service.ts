@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Producer, Consumer, EventType, ResponseMessage } from 'pegasys-orchestrate'
+import { Producer } from 'pegasys-orchestrate'
 import { environment } from 'src/config/environments/environment';
 
 @Injectable()
