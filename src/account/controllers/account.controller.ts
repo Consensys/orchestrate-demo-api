@@ -6,9 +6,9 @@ import { AccountDto } from '../dtos/account.dto'
 import { httpStatus } from 'src/shared/constants/http.status'
 import { ErrorInterceptor } from 'src/shared/interceptors/error.interceptor';
 
-@Controller(route.account)
+@Controller(route.accounts)
 @UseInterceptors(ErrorInterceptor)
-@ApiTags(route.account)
+@ApiTags(route.accounts)
 export class AccountController {
     constructor(private readonly accountService: AccountService) {}
 

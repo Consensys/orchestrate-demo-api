@@ -6,6 +6,7 @@ import { ContractsModule } from './contracts/contracts.module';
 import { FaucetsModule } from './faucets/faucets.module';
 import { NetworksModule } from './networks/networks.module';
 import { SharedModule } from './shared/shared.module'
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SharedModule } from './shared/shared.module'
     ContractsModule,
     FaucetsModule,
     NetworksModule,
+    TransactionModule,
   ]
 })
 export class AppModule { }

@@ -8,7 +8,11 @@ export class SwaggerConfigService {
         const options = new DocumentBuilder()
             .setTitle('PegaSys Orchestrate Manager API')
             .addTag(route.helloWorld)
-            .addTag(route.account)
+            .addTag(route.accounts)
+            .addTag(route.contracts)
+            .addTag(route.faucets)
+            .addTag(route.networks)
+            .addTag(route.transactions)
             .build();
         const document = SwaggerModule.createDocument(app, options);
         SwaggerModule.setup('swagger', app, document);

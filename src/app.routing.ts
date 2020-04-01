@@ -1,6 +1,6 @@
 export const route = {
     helloWorld: 'hello-world',
-    account: 'accounts',
+    accounts: 'accounts',
     contracts: 'contracts',
     faucets: 'faucets',
     networks: 'networks',
