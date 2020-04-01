@@ -11,16 +11,17 @@ import { ErrorInterceptor } from 'src/shared/interceptors/error.interceptor';
 @ApiTags(route.transactions)
 export class TransactionController {
     constructor(private readonly transactionCrafterService: TransactionCrafterService) { }
-    
+
     @Post()
     @ApiResponse(httpStatus.created)
     @ApiResponse(httpStatus.badRequest)
     @ApiResponse(httpStatus.internalServerError)
     @ApiBody({ type: TransactionDto, required: true })
     async createContracts(@Body() transactionDto: TransactionDto): Promise<any> {
-        const requestId = await this.transactionCrafterService.send(transactionDto);
+        const wrapper = await this.transactionCrafterService.send(transactionDto);
         return {
-            response: requestId
+            commands: [wrapper],
+            response: wrapper.response
         };
     }
 }
