@@ -20,7 +20,6 @@ export class TransactionCrafterService {
         });
         console.log('Transaction request sent with id', requestId);
         await producer.disconnect();
-        // return requestId;
 
         const command = `const producer = new Producer([${environment.orchestrate.kafka.endpoint}]);
         await producer.connect();
