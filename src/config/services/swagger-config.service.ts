@@ -7,9 +7,9 @@ export class SwaggerConfigService {
     static setup(app: INestApplication): void {
         const options = new DocumentBuilder()
             .setTitle('PegaSys Orchestrate Manager API')
-            .addTag(route.helloWorld)
             .addTag(route.accounts)
             .addTag(route.contracts)
+            .addTag(route.consumer)
             .addTag(route.faucets)
             .addTag(route.networks)
             .addTag(route.transactions)

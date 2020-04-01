@@ -1,6 +1,6 @@
 export const route = {
-    helloWorld: 'hello-world',
     accounts: 'accounts',
+    consumer: 'consumer',
     contracts: 'contracts',
     faucets: 'faucets',
     networks: 'networks',

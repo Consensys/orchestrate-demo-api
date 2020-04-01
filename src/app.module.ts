@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from 'src/config/config.module';
-import { HelloWorldModule } from 'src/hello-world/hello-world.module';
+import { ConsumerModule } from 'src/consumer/consumer.module';
 import { AccountdModule } from './account/account.module';
 import { ContractsModule } from './contracts/contracts.module';
 import { FaucetsModule } from './faucets/faucets.module';
@@ -12,7 +12,7 @@ import { TransactionModule } from './transaction/transaction.module';
   imports: [
     ConfigModule,
     SharedModule,
-    HelloWorldModule,
+    ConsumerModule,
     AccountdModule,
     ContractsModule,
     FaucetsModule,
